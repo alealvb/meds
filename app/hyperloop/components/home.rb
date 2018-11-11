@@ -1,24 +1,20 @@
 class Home < Hyperloop::Component
-  state search: ''
-  state stores: []
+  state search: '', type: String
+  state stores: [], type: []
   state fetching: false
-  state error: ''
+  state error: '', type: String
 
   render(DIV) do
-    if state.fetching
-      'Cargando...'
-    else
-      Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
-      Polaris::Button() { 'Buscar' }.on(:click) { fetch_search }
-      UL do
-        state.stores.each do |store_data|
-          LI { store_data }
-        end
-      end if state.stores.any?
-    end
+    Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
+    Polaris::Button(loading: state.fetching ? true : false ) { 'Buscar' }.on(:click) { fetch_search }
+    Polaris::DescriptionList(items: serialized_stores)
   end
 
   private
+
+  def serialized_stores
+    state.stores.map { |store| `{term: 'tienda', description: #{store}}` }
+  end
 
   def fetch_search
     mutate.stores []
