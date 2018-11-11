@@ -1,24 +1,20 @@
-# README
+# MEDS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Buscador de medicamentos en diversas paginas de venezuela
 
-Things you may want to cover:
+### Paginas soportadas
 
-* Ruby version
+* [Farmatodo](https://www.farmatodo.com.ve)
 
-* System dependencies
+### Paginas por incluir
 
-* Configuration
+* [Locatel](http://www.locatel.com.ve)
+* [Farmarket](https://www.farmarket.com.ve)
+* [Fundafarmacia](http://www.fundafarmacia.com)
 
-* Database creation
 
-* Database initialization
+### Tecnologías usadas
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [rails](https://rubyonrails.org)
+* [Hyperstack](https://hyperstack.org)
+* [Watir](http://watir.com)
