@@ -6,7 +6,7 @@ class SearchFarmatodo < Hyperloop::ServerOp
 
   step :go_to_url
   step :search_product
-  step :set_item_count
+  step :set_items_count
   step :search_location
 
   def go_to_url
@@ -15,17 +15,17 @@ class SearchFarmatodo < Hyperloop::ServerOp
 
   def search_product
     params.browser.text_field(class: 'farma-input-header')
-          .when_present.set params.text
+          .when_present.set(params.text)
   end
 
-  def set_item_count
+  def set_items_count
     params.browser.div(class: 'items-container').wait_until_present
-    @items_count = params.browser.divs(class: 'item').size
+    params.browser.divs(class: 'item').size
   end
 
-  def search_location
+  def search_location(items_count)
     locations = []
-    @items_count.times do |index|
+    items_count.times do |index|
       navitage_item(index)
       if modal_button.present?
         modal_button.click!

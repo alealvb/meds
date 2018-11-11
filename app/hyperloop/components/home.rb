@@ -8,8 +8,8 @@ class Home < Hyperloop::Component
     if state.fetching
       'Cargando...'
     else
-      INPUT(type: :search).on(:change) { |e| mutate.search e.target.value }
-      BUTTON { 'Buscar' }.on(:click) { fetch_search }
+      Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
+      Polaris::Button() { 'Buscar' }.on(:click) { fetch_search }
       UL do
         state.stores.each do |store_data|
           LI { store_data }
