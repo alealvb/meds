@@ -1,6 +1,6 @@
 class App < Hyperloop::Router
 
-  route() do
+  route do
     Polaris::AppProvider() do
       DIV do
         Route('/', exact: true, mounts: Home)

@@ -4,10 +4,23 @@ class Home < Hyperloop::Component
   state fetching: false
   state error: '', type: String
 
-  render(DIV) do
-    Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
-    Polaris::Button(loading: state.fetching ? true : false ) { 'Buscar' }.on(:click) { fetch_search }
-    Polaris::DescriptionList(items: serialized_stores)
+  render do
+    Polaris::Layout() do
+      Polaris::Layout::Section() do
+        Polaris::Card(title: 'Busqueda', sectioned: true) do
+          Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
+          Polaris::Button(loading: state.fetching ? true : false) { 'Buscar' }.on(:click) { fetch_search }
+          Polaris::DescriptionList(items: serialized_stores)
+        end
+      end
+      Section::Layout::Section() do
+        Polaris::Card(title: 'Resultados', sectioned: true) do
+          Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
+          Polaris::Button(loading: state.fetching ? true : false) { 'Buscar' }.on(:click) { fetch_search }
+          Polaris::DescriptionList(items: serialized_stores)
+        end
+      end
+    end
   end
 
   private

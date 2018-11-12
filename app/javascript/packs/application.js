@@ -8,5 +8,3 @@
 // layout file, like app/views/layouts/application.html.erb
 import * as Polaris from '@shopify/polaris';
 window.Polaris = Polaris;
-
-console.log('Hello World from Webpacker')
