@@ -8,14 +8,8 @@ class Home < Hyperloop::Component
     Polaris::Layout() do
       Polaris::Layout::Section() do
         Polaris::Card(title: 'Busqueda', sectioned: true) do
-          Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
-          Polaris::Button(loading: state.fetching ? true : false) { 'Buscar' }.on(:click) { fetch_search }
-          Polaris::DescriptionList(items: serialized_stores)
-        end
-      end
-      Section::Layout::Section() do
-        Polaris::Card(title: 'Resultados', sectioned: true) do
-          Polaris::TextField(type: :search, value: state.search, onChange: ->(value) { mutate.search value } )
+          Polaris::TextField(type: :search, value: state.search,
+                             onChange: ->(value) { mutate.search value })
           Polaris::Button(loading: state.fetching ? true : false) { 'Buscar' }.on(:click) { fetch_search }
           Polaris::DescriptionList(items: serialized_stores)
         end
